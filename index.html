@@ -147,11 +147,25 @@
         <div class="bg-white w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl">
             <h3 id="modal-title" class="text-xl font-black text-slate-800 uppercase mb-4 text-center">Cast Your Vote</h3>
             <div class="space-y-4">
-                <input type="text" id="voter-email" placeholder="Your Email Address" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none">
-                <input type="text" id="nominee-name" placeholder="Nominee's Full Name" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none">
+                <div>
+                    <label class="text-[9px] font-bold text-slate-400 uppercase ml-2 block">Email Address</label>
+                    <input type="text" id="voter-email" placeholder="Your Email Address" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-sm">
+                </div>
+                <div>
+                    <label class="text-[9px] font-bold text-slate-400 uppercase ml-2 block">Nominee Name</label>
+                    <input type="text" id="nominee-name" placeholder="Nominee's Full Name" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-sm">
+                </div>
+                <div>
+                    <label class="text-[9px] font-bold text-slate-400 uppercase ml-2 block">Number of Votes</label>
+                    <input type="number" id="vote-quantity" value="1" min="1" oninput="updateVoteTotal()" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-green-700">
+                </div>
+                <div class="text-center py-2 border-t border-slate-50 mt-2">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Total Amount Due</p>
+                    <h4 id="vote-total-display" class="text-2xl font-black text-slate-900">₦100</h4>
+                </div>
                 <div class="flex gap-2">
                     <button onclick="closeVoteModal()" class="flex-1 bg-slate-100 text-slate-500 font-bold py-4 rounded-2xl text-xs uppercase">Cancel</button>
-                    <button onclick="processVote()" class="flex-[2] bg-slate-900 text-white font-bold py-4 rounded-2xl text-xs uppercase tracking-widest">Pay ₦100</button>
+                    <button onclick="processVote()" class="flex-[2] bg-slate-900 text-white font-bold py-4 rounded-2xl text-xs uppercase tracking-widest">Pay & Vote</button>
                 </div>
             </div>
         </div>
@@ -237,7 +251,6 @@
     </p>
 </footer>
 
-
 <script>
     let currentVoteCategory = "";
 
@@ -249,7 +262,6 @@
         document.getElementById("btn-ticket-type").innerText = typeName;
     }
 
-    // TICKET PAYMENT FUNCTION
     function makePayment() {
         const email = document.getElementById("email-address").value;
         const amount = document.getElementById("ticket-tier").value;
@@ -278,14 +290,13 @@
         });
     }
 
-    // VOTING MODAL LOGIC
     function viewKingNominees() {
-        const kings = ["No nominee yet, stay tuned"]; // Type real names here
+        const kings = ["Nominee 1", "Nominee 2"]; 
         alert("RAVE KING NOMINEES:\n\n" + kings.map(n => "• " + n).join("\n"));
     }
 
     function viewQueenNominees() {
-        const queens = ["No Nominee yet, stay tuned"]; // Type real names here
+        const queens = ["Nominee 1", "Nominee 2"]; 
         alert("RAVE QUEEN NOMINEES:\n\n" + queens.map(n => "• " + n).join("\n"));
     }
 
@@ -293,34 +304,43 @@
         currentVoteCategory = category;
         document.getElementById('modal-title').innerText = "Vote for " + category;
         document.getElementById('vote-modal').classList.remove('hidden');
+        document.getElementById('vote-quantity').value = 1;
+        updateVoteTotal();
     }
 
     function closeVoteModal() {
         document.getElementById('vote-modal').classList.add('hidden');
     }
 
-    // VOTING PAYMENT FUNCTION
+    function updateVoteTotal() {
+        const qty = document.getElementById('vote-quantity').value || 0;
+        const total = qty * 100;
+        document.getElementById('vote-total-display').innerText = "₦" + total.toLocaleString();
+    }
+
     function processVote() {
         const email = document.getElementById('voter-email').value;
         const nominee = document.getElementById('nominee-name').value;
+        const qty = document.getElementById('vote-quantity').value;
+        const totalAmount = qty * 100;
 
-        if (!email || !nominee) {
-            alert("Please enter both your email and the nominee's name.");
+        if (!email || !nominee || qty < 1) {
+            alert("Please fill in all details correctly.");
             return;
         }
 
         FlutterwaveCheckout({
             public_key: "FLWPUBK-a1a6e1b40927e8f0996d6e71fce1f576-X", 
-            tx_ref: "VOTE-" + currentVoteCategory.replace(" ", "-") + "-" + Date.now(),
-            amount: 100,
+            tx_ref: "VOTE-" + currentVoteCategory.replace(" ", "-") + "-" + qty + "-" + Date.now(),
+            amount: totalAmount,
             currency: "NGN",
             customer: { email: email },
             customizations: {
                 title: "Rave Royal Vote",
-                description: "Vote for " + nominee + " (" + currentVoteCategory + ")",
+                description: qty + " vote(s) for " + nominee + " (" + currentVoteCategory + ")",
             },
             callback: function (data) {
-                alert("Vote successful! Thank you for supporting " + nominee);
+                alert("Payment Successful! " + qty + " vote(s) cast for " + nominee);
                 closeVoteModal();
             }
         });
@@ -336,10 +356,11 @@
         });
     }
 
-    const target = new Date("April 27, 2026 08:00:00").getTime();
+    const target = new Date("May 1, 2026 17:00:00").getTime();
     setInterval(() => {
         const now = new Date().getTime();
         const d = target - now;
+        if(d < 0) return;
         document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
         document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
         document.getElementById("mins").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
@@ -350,5 +371,4 @@
 <script src="https://pl27832956.profitablecpmratenetwork.com/4f/a1/8e/4fa18ecd1587eb4411073e4ffa340e8e.js"></script>
     
 </body>
-    </html>
-            
+</html>  
