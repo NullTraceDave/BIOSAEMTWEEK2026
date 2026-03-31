@@ -48,25 +48,19 @@
 <main class="max-w-4xl mx-auto px-4 -mt-16 relative z-20">
     
     <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-10 border border-white">
-    <div class="md:flex">
-        <div class="md:w-1/2 p-2">
-            <img src="IMG-20260331-WA0125.jpg" alt="Official Flyer" class="w-full h-full object-cover rounded-2xl shadow-inner">
-        </div>
-        <div class="md:w-1/2 p-8 flex flex-col justify-center">
-            <div class="mb-6">
-                <span class="bg-green-100 text-green-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Ticket Portal</span>
-                <h3 class="text-2xl md:text-3xl font-bold mt-2 text-slate-800 uppercase italic">Rave & Award Night</h3>
-                <p class="text-slate-500 text-sm mt-2 font-medium leading-relaxed">
-                    Join the BIOSA/EMT Week 2026! A night of recognition, music, and celebration as we honor outstanding students and unwind in style. Secure your spot now!
-                </p>
-                <p class="text-slate-400 text-xs mt-3 italic font-semibold">May 1st | 5:00 PM - 10:00 PM</p>
+        <div class="md:flex">
+            <div class="md:w-1/2 p-2">
+                <img src="IMG-20260331-WA0125.jpg" alt="Official Flyer" class="w-full h-full object-cover rounded-2xl shadow-inner">
             </div>
-
-            <div class="space-y-4">
+            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                <div class="mb-6">
+                    <span class="bg-green-100 text-green-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Ticket Portal</span>
+                    <h3 class="text-2xl md:text-3xl font-bold mt-2 text-slate-800 uppercase italic">Rave & Award Night</h3>
+                    <p class="text-slate-500 text-sm mt-2 font-medium leading-relaxed">
+                        Join the BIOSA/EMT Week 2026! A night of recognition, music, and celebration as we honor outstanding students and unwind in style. Secure your spot now!
+                    </p>
+                    <p class="text-slate-400 text-xs mt-3 italic font-semibold">May 1st | 5:00 PM - 10:00 PM</p>
                 </div>
-        </div>
-    </div>
-</div>
 
                 <div class="space-y-4">
                     <div>
@@ -103,107 +97,65 @@
 
     <section class="mb-16">
         <div class="text-center mb-10">
-            <h3 class="text-2xl md:text-3xl font-black text-slate-800 uppercase tracking-tighter">BIOSA/EMT Excellence Awards</h3>
-            <p class="text-sm text-slate-500 italic mt-2">Celebrating Excellence in Biology & EMT</p>
-            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
+            <h3 class="text-3xl font-black text-slate-800 uppercase tracking-tighter">The Royal Battle</h3>
+            <p class="text-sm text-slate-500 italic mt-2">₦100 Per Vote | Support your favorite candidate</p>
+            <div class="h-1.5 w-24 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="awards-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-10">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border-b-8 border-green-700 text-center relative overflow-hidden group">
+                <div class="w-16 h-16 bg-slate-50 text-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-100">
+                    <i class="fas fa-mars text-2xl text-blue-500"></i>
+                </div>
+                <h4 class="font-black text-slate-900 uppercase text-xl mb-1">Rave King</h4>
+                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-[0.2em] mb-6">BIOSA/EMT 2026</p>
+                <div class="space-y-3">
+                    <button onclick="viewKingNominees()" class="w-full text-[10px] font-bold text-green-700 border-2 border-green-700 px-6 py-4 rounded-2xl hover:bg-green-700 hover:text-white transition-all uppercase tracking-widest">
+                        View Nominees
+                    </button>
+                    <button onclick="openVoteModal('Rave King')" class="w-full text-[10px] font-bold text-white bg-green-700 px-6 py-4 rounded-2xl uppercase tracking-[0.2em] shadow-lg hover:bg-green-800 transition-all">
+                        Vote for King
+                    </button>
+                </div>
             </div>
 
-        <script>
-            // 1. DATA LIST (ADD NAMES HERE)
-            const awardsData = [
-                { title: "Most attractive Student of the year", nominees: [] },
-                { title: "Most endowed Student of the year", nominees: [] },
-                { title: "Most reliable Student of the year", nominees: [] },
-                { title: "Most social Student of the year", nominees: [] },
-                { title: "Most beautiful Student of the year", nominees: [] },
-                { title: "Most handsome Student of the year", nominees: [] },
-                { title: "Most unique Student of the year", nominees: [] },
-                { title: "Most entertaining Student of the year", nominees: [] },
-                { title: "Most enterprising Student of the year", nominees: [] },
-                { title: "Most Influential Student of the year", nominees: [] },
-                { title: "Most political Student of the year", nominees: [] },
-                { title: "Most innovative Student of the year", nominees: [] },
-                { title: "Most fashionable Student of the year", nominees: [] },
-                { title: "Most intellectual Student of the year", nominees: [] },
-                { title: "Most Talented Student of the year", nominees: [] },
-                { title: "Most creative student of the year", nominees: [] },
-                { title: "Most industrious student of the year", nominees: [] },
-                { title: "Most styled student of the year", nominees: [] },
-                { title: "Most inspiring student of the year", nominees: [] },
-                { title: "Most supportive student of the year", nominees: [] },
-                { title: "Best artist of the year", nominees: [] },
-                { title: "Best rapper of the year", nominees: [] },
-                { title: "Best dancer of the year", nominees: [] },
-                { title: "Best Mc of the year", nominees: [] },
-                { title: "Best Course Representative of the year", nominees: [] },
-                { title: "Best writer of the year", nominees: [] },
-                { title: "Best model of the year", nominees: [] },
-                { title: "Best Footballer of the year", nominees: [] },
-                { title: "Best Athlete of the year", nominees: [] },
-                { title: "Best comedian of the year", nominees: [] },
-                { title: "Best Skit Maker of the year", nominees: [] },
-                { title: "Best dressed Student of the year", nominees: [] },
-                { title: "Best graphics designer of the year", nominees: [] },
-                { title: "Best web designer of the year", nominees: [] },
-                { title: "Videographer of the year", nominees: [] },
-                { title: "Sports man of the year", nominees: [] },
-                { title: "Hype man of the year", nominees: [] },
-                { title: "Academic star of the year", nominees: [] },
-                { title: "Student leader of the year", nominees: [] },
-                { title: "Content creator of the year", nominees: [] },
-                { title: "Student activist of the year", nominees: [] },
-                { title: "Student politician of the year", nominees: [] },
-                { title: "Corrosive leader of the year", nominees: [] },
-                { title: "Traditional leader of the year", nominees: [] }
-            ];
-
-            // 2. HELPER FUNCTION
-            function viewNominees(index) {
-                const award = awardsData[index];
-                if (!award.nominees || award.nominees.length === 0) {
-                    alert("Category: " + award.title + "\n\nStatus: No nominees yet. Stay tuned!");
-                } else {
-                    alert("Nominees for " + award.title + ":\n\n" + award.nominees.map(name => "• " + name).join("\n"));
-                }
-            }
-
-            // 3. RENDER FUNCTION
-            const container = document.getElementById('awards-container');
-            awardsData.forEach((award, index) => {
-                container.innerHTML += `
-                    <div class="bg-white p-6 rounded-3xl shadow-lg border-b-4 border-green-700 text-center hover:-translate-y-2 transition-transform">
-                        <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-trophy text-xl"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 uppercase text-sm">${award.title}</h4>
-                        <div class="flex gap-2 mt-4">
-                            <button onclick="viewNominees(${index})" class="flex-1 text-[10px] font-bold text-green-700 border border-green-700 px-4 py-2 rounded-full hover:bg-green-700 hover:text-white transition-colors uppercase">
-                                View Nominee
-                            </button>
-                            <div class="relative group flex-1">
-                                <button class="w-full text-[10px] font-bold text-white bg-slate-900 px-4 py-2 rounded-full uppercase">
-                                    Pick Award
-                                </button>
-                                <div class="absolute bottom-full mb-2 left-0 right-0 hidden group-hover:block bg-slate-900 text-white text-[9px] rounded-lg p-2 z-50">
-                                    <a href="https://wa.me/2349126482199?text=I%20want%20to%20pick:%20${award.title}" class="block mb-1 border-b border-slate-700 pb-1">Kenny (BIO)</a>
-                                    <a href="https://wa.me/2348103331713?text=I%20want%20to%20pick:%20${award.title}" class="block">Becky (EMT)</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        </script>
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border-b-8 border-yellow-500 text-center relative overflow-hidden group">
+                <div class="w-16 h-16 bg-slate-50 text-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-100">
+                    <i class="fas fa-venus text-2xl text-pink-500"></i>
+                </div>
+                <h4 class="font-black text-slate-900 uppercase text-xl mb-1">Rave Queen</h4>
+                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-[0.2em] mb-6">BIOSA/EMT 2026</p>
+                <div class="space-y-3">
+                    <button onclick="viewQueenNominees()" class="w-full text-[10px] font-bold text-yellow-600 border-2 border-yellow-500 px-6 py-4 rounded-2xl hover:bg-yellow-500 hover:text-white transition-all uppercase tracking-widest">
+                        View Nominees
+                    </button>
+                    <button onclick="openVoteModal('Rave Queen')" class="w-full text-[10px] font-bold text-white bg-yellow-500 px-6 py-4 rounded-2xl uppercase tracking-[0.2em] shadow-lg hover:bg-yellow-600 transition-all">
+                        Vote for Queen
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <div class="mt-8 bg-slate-900 rounded-3xl p-6 text-center border-2 border-yellow-500 shadow-xl">
             <p class="text-yellow-400 text-xs font-bold uppercase tracking-[0.2em] mb-2">Honorable Mention</p>
             <h4 class="text-white font-bold text-lg">The Executive Excellence Award</h4>
-            <p class="text-slate-400 text-[11px] mt-1 italic">Reserved for the most dedicated student leaders of the session.</p>
+            <p class="text-slate-400 text-[11px] mt-1 italic">Reserved for the most dedicated student leaders.</p>
         </div>
     </section>
+
+    <div id="vote-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl">
+            <h3 id="modal-title" class="text-xl font-black text-slate-800 uppercase mb-4 text-center">Cast Your Vote</h3>
+            <div class="space-y-4">
+                <input type="text" id="voter-email" placeholder="Your Email Address" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none">
+                <input type="text" id="nominee-name" placeholder="Nominee's Full Name" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none">
+                <div class="flex gap-2">
+                    <button onclick="closeVoteModal()" class="flex-1 bg-slate-100 text-slate-500 font-bold py-4 rounded-2xl text-xs uppercase">Cancel</button>
+                    <button onclick="processVote()" class="flex-[2] bg-slate-900 text-white font-bold py-4 rounded-2xl text-xs uppercase tracking-widest">Pay ₦100</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div class="glass p-6 rounded-3xl border border-white shadow-sm">
@@ -263,7 +215,7 @@
 
 <footer class="py-12 bg-green-900 border-t border-yellow-500/30 text-center">
     <p class="text-xs font-bold text-green-200 uppercase tracking-widest opacity-80">
-        A BIOSA/EMT Social Committee Production
+        A BIOSA/EMT Social Committee Production <br>
         COMR. GODSPOWER LED ADMINISTRATION
     </p>
     
@@ -287,15 +239,17 @@
 
 
 <script>
+    let currentVoteCategory = "";
+
     function updatePriceDisplay() {
         const select = document.getElementById("ticket-tier");
         const price = select.value;
         const typeName = select.options[select.selectedIndex].text.split('—')[0].trim();
-        
         document.getElementById("price-display").innerText = "₦" + Number(price).toLocaleString();
         document.getElementById("btn-ticket-type").innerText = typeName;
     }
 
+    // TICKET PAYMENT FUNCTION
     function makePayment() {
         const email = document.getElementById("email-address").value;
         const amount = document.getElementById("ticket-tier").value;
@@ -308,7 +262,7 @@
 
         FlutterwaveCheckout({
             public_key: "FLWPUBK-a1a6e1b40927e8f0996d6e71fce1f576-X", 
-            tx_ref: "BIOSA-EMT-" + Date.now(),
+            tx_ref: "TICKET-BIOSA-EMT-" + Date.now(),
             amount: amount,
             currency: "NGN",
             payment_options: "card, banktransfer, ussd",
@@ -320,6 +274,54 @@
             callback: function (data) {
                 document.getElementById('ticket-display').classList.remove('hidden');
                 generateTicket(data.transaction_id + "-" + amount);
+            }
+        });
+    }
+
+    // VOTING MODAL LOGIC
+    function viewKingNominees() {
+        const kings = ["Nominee 1", "Nominee 2"]; // Type real names here
+        alert("RAVE KING NOMINEES:\n\n" + kings.map(n => "• " + n).join("\n"));
+    }
+
+    function viewQueenNominees() {
+        const queens = ["Nominee 1", "Nominee 2"]; // Type real names here
+        alert("RAVE QUEEN NOMINEES:\n\n" + queens.map(n => "• " + n).join("\n"));
+    }
+
+    function openVoteModal(category) {
+        currentVoteCategory = category;
+        document.getElementById('modal-title').innerText = "Vote for " + category;
+        document.getElementById('vote-modal').classList.remove('hidden');
+    }
+
+    function closeVoteModal() {
+        document.getElementById('vote-modal').classList.add('hidden');
+    }
+
+    // VOTING PAYMENT FUNCTION
+    function processVote() {
+        const email = document.getElementById('voter-email').value;
+        const nominee = document.getElementById('nominee-name').value;
+
+        if (!email || !nominee) {
+            alert("Please enter both your email and the nominee's name.");
+            return;
+        }
+
+        FlutterwaveCheckout({
+            public_key: "FLWPUBK-a1a6e1b40927e8f0996d6e71fce1f576-X", 
+            tx_ref: "VOTE-" + currentVoteCategory.replace(" ", "-") + "-" + Date.now(),
+            amount: 100,
+            currency: "NGN",
+            customer: { email: email },
+            customizations: {
+                title: "Rave Royal Vote",
+                description: "Vote for " + nominee + " (" + currentVoteCategory + ")",
+            },
+            callback: function (data) {
+                alert("Vote successful! Thank you for supporting " + nominee);
+                closeVoteModal();
             }
         });
     }
@@ -348,4 +350,5 @@
 <script src="https://pl27832956.profitablecpmratenetwork.com/4f/a1/8e/4fa18ecd1587eb4411073e4ffa340e8e.js"></script>
     
 </body>
-</html>
+    </html>
+            
